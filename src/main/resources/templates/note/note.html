@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<title>matieres</title>
+<link rel="stylesheet" th:href="@{matieres/css/Matieres.css}"/>
+</head>
+<body>
+<div class="subHeader">
+<p>Call us : +89745812</p>
+</div>
+	<header>
+		<img class="logo" alt="univ" th:src="@{img/univ.png }">
+		<h1>Université de Cambridge</h1>
+		<div class="border"></div>
+	
+	</header>
+	
+	<h2>Les notes</h2>
+
+	<a class="btn"
+		th:href="@{note-ajouter}"
+	>Ajouter une
+		note</a>
+	<table>
+		<tr>
+		
+			<th>Nom et prénom de l'étudiant</th>
+			<th>Nom de la matière</th>
+			<th>Note de l'étudiant</th>
+			<th>Coefficient de la matière</th>
+			
+			
+		</tr>
+		<tr th:each="note : ${ notes}" >
+		
+			<td th:text="${note.etudiant.nom + ' ' + note.etudiant.prenom}"></td>
+			<td
+				th:text="${note.matiere.nom}"
+			></td>
+			<td
+				th:text="${note.note}"
+			></td>
+		
+			<td
+				th:text="${note.matiere.coef}"
+			></td>
+			<!-- on doit donner deux informations -->
+			<td><a th:href="@{note-modif(idMatiere=${note.matiere.id}, idEtudiant=${note.etudiant.id})}">Modifier</a></td>
+			
+			
+
+		</tr>
+	</table>
+	<footer>
+		<p>Tous droits réservés</p>
+	</footer>
+</body>
+</html>

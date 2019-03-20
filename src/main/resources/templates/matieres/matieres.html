@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<title>matieres</title>
+<link rel="stylesheet" th:href="@{matieres/css/Matieres.css}"/>
+</head>
+<body>
+<div class="subHeader">
+<p>Call us : +89745812</p>
+</div>
+	<header>
+		<img class="logo" alt="univ" th:src="@{img/univ.png }">
+		<h1>Université de Cambridge</h1>
+		<div class="border"></div>
+	
+	</header>
+<h2>Nos matières</h2>
+
+	<a class="btn"
+		th:href="@{matieres-ajouter}"
+	>Ajouter une
+		matiere</a>
+	<table>
+		<tr>
+		
+			<th>Id</th>
+			<th>Numéro matieres</th>
+			<th>Nom</th>
+			<th>Coef</th>
+			<th>Nom et prénom de l'enseignant</th>
+			
+		</tr>
+		<tr th:each="mat : ${ listeMatieres}" >
+		
+			<td th:text="${mat.id}"></td>
+			<td
+				th:text="${mat.numeroMatiere}"
+			></td>
+			<td
+				th:text="${mat.nom}"
+			></td>
+		
+			<td
+				th:text="${mat.coef}"
+			></td>
+		<!-- 	th:if="${mat.enseignant.nom} == NULL" -->
+			<td 
+				th:text="${mat.enseignant.nom + ' ' + mat.enseignant.prenom }"
+			></td>
+			
+			
+		
+			<td><a
+				class="btn2"
+				th:href="@{matieres-infos(id=${mat.id})}"
+			>  Voir</a></td>
+		</tr>
+	</table>
+<footer >
+<p>Tous droits réservés</p>
+</footer>
+</body>
+</html>

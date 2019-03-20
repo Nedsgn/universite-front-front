@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<title>etudiant modifier</title>
+<link rel="stylesheet" th:href="@{matieres/css/add.css}"/>
+
+</head>
+<body>
+	<h1>Modifier une matière </h1>
+
+	<img alt="user" src="https://p13cdn4static.sharpschool.com/UserFiles/Servers/Server_55394/Templates/sidebar-logo.png"/>
+	
+	<form id="form" th:action="@{matieres-modif}" method="POST" th:object="${matieres}"> <!-- l'adresse qu'on a mi dans l'action est celle qu'on a mi dans le controller afin de recuperer les données -->
+		<fieldset>
+		<legend>Modifier une matière</legend>
+		
+				<input hidden="hidden" class="input" type="text" name="id" id="id" th:field="*{id}"/>
+					<label id="labelHidden" >Veuillez saisir un nom de matière</label>
+				<label for="nom">Nom :</label>
+				<input class="input" type="text" name="nom" id="nom" th:field="*{nom}"/>
+				<br/>
+		
+				<label for="numeroMatiere">Numéro matieres :</label>
+				<input class="input" type="text" name="numeroMatiere" id="numeroMatiere" th:field="*{numeroMatiere}"/>
+				<br/>
+				
+				<label for="coef">Coef :</label>
+				<input class="input" type="text" name="coef" id="coef" th:field="*{coef}"/>
+				<br/>
+				<label>Enseignant :</label>
+					<select th:field="*{enseignant}"><!-- génère le name="" -->
+				<!-- La balise qu'on veut répéter c'est option , donnc le th each dessus -->
+				<option th:each="enseignant :${listeEnseignant}"
+				th:value="${enseignant.id}"
+				th:text="${enseignant.nom + ' ' + enseignant.prenom}"
+				></option>
+				</select>
+				<input class="btn" type="reset"/>
+				<input class="btn" type="button" value="valider"   onclick="validerFormulaire();"/>
+		</fieldset>
+
+	</form>
+		
+	<a class ="btn" th:href="@{matieres}">retour</a>
+	
+	
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	<script type="text/javascript" th:src="@{/matieres/js/validation-matiere.js}"></script>
+</body>
+</html>

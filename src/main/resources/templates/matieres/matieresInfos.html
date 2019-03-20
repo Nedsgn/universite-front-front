@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<title>Etudiants Infos</title>
+<link rel="stylesheet" th:href="@{matieres/css/infos.css}"/>
+</head>
+<body>
+	<div class="subHeader">
+		<p>Call us : +89745812</p>
+	</div>
+	
+		<h1>Université de Cambridge</h1>
+		<h2 th:text="${uneMatiere.nom}"></h2> 
+		
+		
+	<div class="container">
+	
+	
+	
+	
+	
+		<ul>
+			<span>♣ Numéro Matieres :</span>
+			<li th:text="${uneMatiere.numeroMatiere}"></li>
+			<span>♣ Coef :</span>
+			<li th:text="${uneMatiere.coef}"></li>
+			<span>♣ Nom et prénom de l'enseignant :</span>
+			<li th:text="${uneMatiere.enseignant.nom + ' ' + uneMatiere.enseignant.prenom}"></li>
+			
+		</ul>
+	
+	</div>
+	
+	<a class="btn" th:href="@{matieres-supprimer(id=${uneMatiere.id})}">Supprimer</a>
+	<a class="btn" th:href="@{matieres-modifier(id=${uneMatiere.id})}">Modifier</a>
+	
+	<a class="btn" th:href="@{matieres}">Retour</a>
+</body>
+</html>

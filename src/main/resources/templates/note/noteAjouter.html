@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<title>Etudiant ajouter</title>
+<link rel="stylesheet" th:href="@{matieres/css/add.css}"/>
+</head>
+<body>
+<div class="subHeader">
+<p>Call us : +89745812</p>
+</div>
+<h1>Université de Cambridge</h1>
+
+	<img class="note" alt="user" src="https://qph.fs.quoracdn.net/main-qimg-2b010b75ebd76b68e91dd68d6f4c81da"/>
+	
+		<form id="form" th:action="@{note-valider}" method="POST" th:object="${note}"> <!-- l'adresse qu'on a mi dans l'action est celle qu'on a mi dans le controller afin de recuperer les données -->
+		<fieldset>
+		
+		<legend>Ajouter une note</legend>
+		
+					<label id="labelHidden" >Veuillez saisir une note</label>
+				<label for="note">Note :</label>
+				<input class="input" type="number" name="note" id="note" th:field="*{note}"/>
+				<br/>
+				
+				<label>Etudiant :</label>
+				<select th:field="*{etudiant}">
+				<!-- listeE provient du controller lors de la récupération des la liste d'étudiant via un autre package -->
+				<option th:each="etudiant :${listeE}"
+				th:value="${etudiant.id}"
+				th:text="${etudiant.nom + ' ' + etudiant.prenom}"
+				></option>
+				</select>
+				<br/>
+				<label>Matière :</label>
+				<select th:field="*{matiere}"><!-- génère le name="" -->
+				<!-- La balise qu'on veut répéter c'est option , donnc le th each dessus -->
+				<option th:each="matiere :${listeMatiere}"
+				th:value="${matiere.id}"
+				th:text="${matiere.nom}"
+				></option>
+				</select>
+				<br/>
+	<p><input class="btn" type="reset"/>
+<input class="btn" type="button" value="valider"   onclick="validerFormulaire();"/></p>
+		</fieldset>
+
+		</form>
+		
+	<a class ="btn" th:href="@{note}">retour</a>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	<script type="text/javascript" th:src="@{/matieres/js/validation-note.js}"></script>
+</body>
+</html>
